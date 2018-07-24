@@ -1,0 +1,99 @@
+.navigation {
+
+    &__checkbox {
+        display: none;
+    }
+
+    &__button {
+        background-color: $color-white;
+        height: 5rem;
+        width: 5rem;
+        position: fixed;
+        top: 6rem;
+        right: 6rem;
+        z-index: 5;
+        border-radius: 50%;
+        box-shadow: 0 1rem 3rem rgba($color-black, .1);
+        text-align: center;
+        cursor: pointer;
+        animation: 1s moveInBottom ease-out;
+    }
+
+    &__nav {
+        height: 100vh;
+        width: 0;
+        position: fixed;
+        top: 0;
+        right: 0;
+        opacity: 0;
+        z-index: 1;
+        background-color: $color-grey-light;
+        transition: opacity .5s;
+    }
+
+    &__list {
+        position: absolute;
+        top: 40%;
+        left: 7rem;
+        list-style: none;
+        width: 100%;
+    }
+
+    &__link {
+        &:link,
+        &:visited {
+            display: inline-block;
+            font-size: 3rem;
+            font-weight: 300;
+            text-decoration: none;
+            color: $color-black;
+        }
+
+        &:hover {
+            color: $color-grey-dark;
+        }
+    }
+
+    &__icon {
+        position: relative;
+        margin-top: 2.5rem;
+
+        &,
+        &::before,
+        &::after {
+            width: 2.5rem;
+            height: 1.5px;
+            background-color: $color-black;
+            display: inline-block
+        }
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            transition: all .2s;
+        }
+
+        &::before { top: -.8rem ;}
+        &::after { top: .8rem; }
+    }
+
+    &__checkbox:checked + &__button &__icon {
+        background-color: transparent;
+    }
+    &__checkbox:checked + &__button &__icon::before {
+        top: 0;
+        transform: rotate(135deg);
+    }
+    &__checkbox:checked + &__button &__icon::after {
+        top: 0;
+        transform: rotate(-135deg);
+    }
+
+    &__checkbox:checked ~ &__nav {
+        opacity: 1;
+        width: 100%;
+    }
+
+}

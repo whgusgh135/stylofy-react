@@ -1,0 +1,20 @@
+.footer {
+    background-color: $color-footer;
+    padding: 1rem 5rem;
+    font-size: 1.2rem;
+    color: $color-grey-dark;
+
+    @include respond(tab-port) {
+        width: 100%;
+        float: none;
+    }
+
+    &__link {
+        text-decoration: none;
+        color: $color-grey-medium;
+
+        &:hover {
+            color: $color-grey-dark;
+        }
+    }
+}

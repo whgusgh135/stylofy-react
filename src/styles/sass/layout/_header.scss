@@ -1,0 +1,39 @@
+.header {
+    height: 100vh;
+    background-image: 
+        linear-gradient(
+            to right, 
+            rgba($color-black, 0.2), 
+            rgba($color-black, 0.2)
+        ), url(../img/stylofy-2.jpg);
+    background-size: cover;
+    position: relative;
+
+    &__logo-box {
+        position: absolute;
+        top: 4rem;
+        left: 4rem;
+        animation: 1s moveInBottom ease-out;
+    }
+
+    &__logo {
+        height: 20rem;
+    }
+
+    &__text-box {
+        position: absolute;
+        top: 70%;
+        left: 7rem;
+        opacity: 0;
+        animation: 1s moveInRight .5s forwards;
+    }
+
+    &__scroll {
+        position: absolute;
+        top: 90%;
+        right: 5rem;
+        transform: rotate(-90deg);
+        animation: 3s bounce 1s;
+        animation-iteration-count: infinite;
+    }
+}

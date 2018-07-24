@@ -1,0 +1,22 @@
+.feature-box {
+    background-color: rgba($color-white, .8);
+    font-size: 1.5rem;
+    border-radius: 3px;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+    padding: 2rem;
+    text-align: center;
+    transition: transform .3s;
+
+    &__heading {
+        text-transform: uppercase;
+    }
+
+    &__price {
+        font-size: 4rem;
+        font-weight: 700;
+    }
+
+    &:hover {
+        transform: scale(1.05) translateY(-1rem);
+    }
+}

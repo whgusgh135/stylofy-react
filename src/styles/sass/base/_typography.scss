@@ -1,0 +1,33 @@
+body {
+    font-family: "Merriweather", serif;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.7;
+    color: $color-primary;
+}
+
+.heading-primary {
+    color: $color-white;
+    margin-bottom: 5rem;
+    font-weight: 300;
+    font-size: 3rem;
+    max-width: 37rem;
+}
+
+.heading-secondary {
+    color: $color-black;
+    margin-bottom: 4rem;
+    font-weight: 300;
+    font-size: 3rem;
+}
+
+.heading-tertiary {
+    color: $color-white;
+    font-weight: 300;
+    font-size: 3rem;
+}
+
+.paragraph-sign {
+    color: $color-white;
+    font-size: 1.3rem;
+}

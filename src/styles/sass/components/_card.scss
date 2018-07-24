@@ -1,0 +1,103 @@
+.card {
+    position: relative;
+    height: 30rem;
+
+    &__side {
+        height: 30rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        backface-visibility: hidden;
+        border-radius: 3px;
+        overflow: hidden;
+        box-shadow: 0 2rem 4rem rgba($color-black, .2);
+        transition: all .8s ease;
+
+        &--front {
+            background-color: $color-white;
+        }
+
+        &--back {
+            background-color: $color-primary;
+            text-align: center;
+            transform: rotateY(180deg);
+        }
+    }
+    &:hover &__side--front {
+        transform: rotateY(-180deg);
+    }
+
+    &:hover &__side--back {
+        transform: rotateY(0);
+    }
+
+    &__picture {
+        background-size: cover;
+        height: 100%;
+
+        &--1 {
+            background-image: url(../img/hairdresser-1.jpg);
+        }
+
+        &--2 {
+            background-image: url(../img/hairdresser-2.jpg);
+        }
+
+        &--3 {
+            background-image: url(../img/hairdresser-3.jpg);
+        }
+    }
+
+    &__box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        color: $color-white;
+
+        &--text {
+            margin-bottom: 2rem;
+        }
+    }
+
+    @media only screen and (max-width: 56.25em),
+            only screen and (hover: none) {
+
+        position: relative;
+        border-radius: 3px;
+        box-shadow: 0 2rem 4rem rgba($color-black, .2);
+        height: auto;
+    
+        &__side {
+            border-radius: 0;
+            height: 30rem;
+            position: relative;
+    
+            &--back {
+                background-color: $color-black;
+                text-align: center;
+                transform: rotateY(0);
+                height: 12rem;
+            }
+        }
+        &:hover &__side--front {
+            transform: rotateY(0);
+        }
+    
+        &__box {
+            position: relative;
+            top: 0;
+            left: 0;
+            transform: translate(0);
+            width: 100%;
+            color: $color-white;
+    
+            &--text {
+                margin-bottom: 1rem;
+                margin-top: 1rem;
+            }
+        }
+    }
+}

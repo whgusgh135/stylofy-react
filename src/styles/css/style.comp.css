@@ -1,0 +1,459 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  font-size: 62.5%; }
+  @media only screen and (max-width: 75em) {
+    html {
+      font-size: 56.25%; } }
+  @media only screen and (max-width: 56.25em) {
+    html {
+      font-size: 50%; } }
+  @media only screen and (min-width: 112.5em) {
+    html {
+      font-size: 75%; } }
+
+body {
+  box-sizing: border-box; }
+
+::selection {
+  background-color: #333;
+  color: #fff; }
+
+body {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.7;
+  color: #333; }
+
+.heading-primary {
+  color: #fff;
+  margin-bottom: 5rem;
+  font-weight: 300;
+  font-size: 3rem;
+  max-width: 37rem; }
+
+.heading-secondary {
+  color: #000;
+  margin-bottom: 4rem;
+  font-weight: 300;
+  font-size: 3rem; }
+
+.heading-tertiary {
+  color: #fff;
+  font-weight: 300;
+  font-size: 3rem; }
+
+.paragraph-sign {
+  color: #fff;
+  font-size: 1.3rem; }
+
+.u-center-text {
+  text-align: center !important; }
+
+.u-margin-bottom-big {
+  margin-bottom: 8rem !important; }
+
+.u-margin-bottom-medium {
+  margin-bottom: 4rem !important; }
+
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem !important; }
+
+.u-margin-top-big {
+  margin-top: 8rem !important; }
+
+.u-margin-top-huge {
+  margin-top: 10rem !important; }
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem); }
+  100% {
+    opcaity: 1;
+    transform: translateY(0); } }
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-3rem); }
+  100% {
+    opacity: 1;
+    transform: translateY(0); } }
+
+@keyframes bounce {
+  0% {
+    transform: rotate(-90deg) translateX(0); }
+  50% {
+    transform: rotate(-90deg) translateX(-3rem); }
+  100% {
+    transform: rotate(-90deg) translateX(0); } }
+
+.composition {
+  position: relative; }
+  .composition__box {
+    position: absolute;
+    top: -10rem;
+    left: 10rem;
+    width: 50%;
+    padding-bottom: 100%;
+    background-color: #D9DFD4; }
+  .composition__photo {
+    width: 50%;
+    position: absolute;
+    transition: all .2s; }
+    .composition__photo--p1 {
+      top: -2rem;
+      right: 0; }
+      @media only screen and (max-width: 56.25em) {
+        .composition__photo--p1 {
+          top: 1rem; } }
+    .composition__photo--p2 {
+      top: -8rem;
+      left: 1rem; }
+      @media only screen and (max-width: 56.25em) {
+        .composition__photo--p2 {
+          top: -1rem; } }
+    .composition__photo:hover {
+      transform: scale(1.05) translateY(-0.5rem);
+      z-index: 2; }
+  .composition:hover .composition__photo:not(:hover) {
+    transform: scale(0.95); }
+
+.feature-box {
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 1.5rem;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  padding: 2rem;
+  text-align: center;
+  transition: transform .3s; }
+  .feature-box__heading {
+    text-transform: uppercase; }
+  .feature-box__price {
+    font-size: 4rem;
+    font-weight: 700; }
+  .feature-box:hover {
+    transform: scale(1.05) translateY(-1rem); }
+
+.card {
+  position: relative;
+  height: 30rem; }
+  .card__side {
+    height: 30rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    backface-visibility: hidden;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
+    transition: all .8s ease; }
+    .card__side--front {
+      background-color: #fff; }
+    .card__side--back {
+      background-color: #333;
+      text-align: center;
+      transform: rotateY(180deg); }
+  .card:hover .card__side--front {
+    transform: rotateY(-180deg); }
+  .card:hover .card__side--back {
+    transform: rotateY(0); }
+  .card__picture {
+    background-size: cover;
+    height: 100%; }
+    .card__picture--1 {
+      background-image: url(../img/hairdresser-1.jpg); }
+    .card__picture--2 {
+      background-image: url(../img/hairdresser-2.jpg); }
+    .card__picture--3 {
+      background-image: url(../img/hairdresser-3.jpg); }
+  .card__box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    color: #fff; }
+    .card__box--text {
+      margin-bottom: 2rem; }
+  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+    .card {
+      position: relative;
+      border-radius: 3px;
+      box-shadow: 0 2rem 4rem rgba(0, 0, 0, 0.2);
+      height: auto; }
+      .card__side {
+        border-radius: 0;
+        height: 30rem;
+        position: relative; }
+        .card__side--back {
+          background-color: #000;
+          text-align: center;
+          transform: rotateY(0);
+          height: 12rem; }
+      .card:hover .card__side--front {
+        transform: rotateY(0); }
+      .card__box {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: translate(0);
+        width: 100%;
+        color: #fff; }
+        .card__box--text {
+          margin-bottom: 1rem;
+          margin-top: 1rem; } }
+
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: .1; }
+  .background-video__content {
+    height: 100%;
+    width: 100%;
+    object-fit: cover; }
+
+.testimonial {
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+  background-color: #fff; }
+
+.btn, .btn:link, .btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1.5rem 4rem;
+  display: inline-block;
+  border-radius: 10rem;
+  transition: all .2;
+  position: relative; }
+
+.btn:hover {
+  transform: translateY(-0.1rem);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+  .btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0; }
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  border-radius: 10rem;
+  top: 0;
+  left: 0;
+  transition: all .4s;
+  z-index: -1;
+  background-color: #fff; }
+
+.btn--white {
+  background-color: #fff;
+  color: #333; }
+
+.contact__text-box {
+  color: #777; }
+
+.contact__logo {
+  transform: translateY(-3rem); }
+  @media only screen and (max-width: 56.25em) {
+    .contact__logo {
+      display: none; } }
+
+.header {
+  height: 100vh;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(../img/stylofy-2.jpg);
+  background-size: cover;
+  position: relative; }
+  .header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+    animation: 1s moveInBottom ease-out; }
+  .header__logo {
+    height: 20rem; }
+  .header__text-box {
+    position: absolute;
+    top: 70%;
+    left: 7rem;
+    opacity: 0;
+    animation: 1s moveInRight .5s forwards; }
+  .header__scroll {
+    position: absolute;
+    top: 90%;
+    right: 5rem;
+    transform: rotate(-90deg);
+    animation: 3s bounce 1s;
+    animation-iteration-count: infinite; }
+
+.row {
+  max-width: 114rem;
+  margin: 0 auto; }
+  @media only screen and (max-width: 56.25em) {
+    .row {
+      max-width: 40rem;
+      padding: 0 3rem; } }
+  .row::after {
+    content: "";
+    display: table;
+    clear: both; }
+  .row [class^="col-"] {
+    float: left; }
+    .row [class^="col-"]:not(:last-child) {
+      margin-right: 6rem; }
+      @media only screen and (max-width: 56.25em) {
+        .row [class^="col-"]:not(:last-child) {
+          margin-right: 0;
+          margin-bottom: 4rem; } }
+    @media only screen and (max-width: 56.25em) {
+      .row [class^="col-"] {
+        width: 100% !important; } }
+  .row .col-1-of-2 {
+    width: calc((100% - 6rem) / 2); }
+  .row .col-1-of-3 {
+    width: calc((100% - 2 * 6rem) / 3); }
+  .row .col-2-of-3 {
+    width: calc(2 * ((100% - 2 * 6rem) / 3) + 6rem); }
+  .row .col-1-of-4 {
+    width: calc((100% - 3 * 6rem) / 4); }
+
+.footer {
+  background-color: #292929;
+  padding: 1rem 5rem;
+  font-size: 1.2rem;
+  color: #777; }
+  @media only screen and (max-width: 56.25em) {
+    .footer {
+      width: 100%;
+      float: none; } }
+  .footer__link {
+    text-decoration: none;
+    color: #CCCCCC; }
+    .footer__link:hover {
+      color: #777; }
+
+.navigation__checkbox {
+  display: none; }
+
+.navigation__button {
+  background-color: #fff;
+  height: 5rem;
+  width: 5rem;
+  position: fixed;
+  top: 6rem;
+  right: 6rem;
+  z-index: 5;
+  border-radius: 50%;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+  text-align: center;
+  cursor: pointer;
+  animation: 1s moveInBottom ease-out; }
+
+.navigation__nav {
+  height: 100vh;
+  width: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  opacity: 0;
+  z-index: 1;
+  background-color: #f7f7f7;
+  transition: opacity .5s; }
+
+.navigation__list {
+  position: absolute;
+  top: 40%;
+  left: 7rem;
+  list-style: none;
+  width: 100%; }
+
+.navigation__link:link, .navigation__link:visited {
+  display: inline-block;
+  font-size: 3rem;
+  font-weight: 300;
+  text-decoration: none;
+  color: #000; }
+
+.navigation__link:hover {
+  color: #777; }
+
+.navigation__icon {
+  position: relative;
+  margin-top: 2.5rem; }
+  .navigation__icon, .navigation__icon::before, .navigation__icon::after {
+    width: 2.5rem;
+    height: 1.5px;
+    background-color: #000;
+    display: inline-block; }
+  .navigation__icon::before, .navigation__icon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    transition: all .2s; }
+  .navigation__icon::before {
+    top: -.8rem; }
+  .navigation__icon::after {
+    top: .8rem; }
+
+.navigation__checkbox:checked + .navigation__button .navigation__icon {
+  background-color: transparent; }
+
+.navigation__checkbox:checked + .navigation__button .navigation__icon::before {
+  top: 0;
+  transform: rotate(135deg); }
+
+.navigation__checkbox:checked + .navigation__button .navigation__icon::after {
+  top: 0;
+  transform: rotate(-135deg); }
+
+.navigation__checkbox:checked ~ .navigation__nav {
+  opacity: 1;
+  width: 100%; }
+
+.section-about {
+  background-color: #f7f7f7;
+  padding: 20rem 5rem;
+  height: 100vh; }
+  @media only screen and (max-width: 56.25em) {
+    .section-about {
+      padding: 10rem 0; } }
+
+.section-features {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../img/stylofy-1.jpg);
+  background-size: cover;
+  padding: 20rem 0; }
+  @media only screen and (max-width: 56.25em) {
+    .section-features {
+      padding: 10rem 0; } }
+
+.section-book {
+  background-color: #F5F0ED;
+  padding: 20rem 5rem; }
+  @media only screen and (max-width: 56.25em) {
+    .section-book {
+      padding: 10rem 0; } }
+
+.section-contact {
+  background-color: #333;
+  padding-top: 10rem; }
+  @media only screen and (max-width: 56.25em) {
+    .section-contact {
+      padding-top: 0;
+      padding-bottom: 3rem; } }
+
+.section-stories {
+  position: relative;
+  padding: 15rem 0; }

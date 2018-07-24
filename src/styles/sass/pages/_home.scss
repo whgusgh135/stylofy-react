@@ -1,0 +1,48 @@
+.section-about {
+    background-color: $color-section-background-1;
+    padding: 20rem 5rem;
+    height: 100vh;
+
+    @include respond(tab-port) {
+        padding: 10rem 0;
+    }
+}
+
+.section-features {
+    background-image:
+        linear-gradient(
+            to right, 
+            rgba($color-black, 0.7), 
+            rgba($color-black, 0.7)
+        ), url(../img/stylofy-1.jpg);
+    background-size: cover;
+    padding: 20rem 0;
+
+    @include respond(tab-port) {
+        padding: 10rem 0;
+    }
+}
+
+.section-book {
+    background-color: $color-section-background-3;
+    padding: 20rem 5rem;
+
+    @include respond(tab-port) {
+        padding: 10rem 0;
+    }
+
+}
+.section-contact {
+    background-color: $color-primary;
+    padding-top: 10rem;
+    
+    @include respond(tab-port) {
+        padding-top: 0;
+        padding-bottom: 3rem;
+    }
+}
+
+.section-stories {
+    position: relative;
+    padding: 15rem 0;
+}
