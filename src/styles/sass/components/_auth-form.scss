@@ -1,0 +1,49 @@
+.auth-form {
+    background-color: $color-grey-light;
+    border-radius: 0.5rem;
+    padding: 6rem;
+
+    &__heading {
+        text-align: center;
+    }
+
+    &__items {
+        display: flex;
+        flex-direction: column;
+
+        & > * {
+            margin-top: 1.6rem;
+        }
+
+        &--register {
+            display: grid;
+            grid-template-columns: min-content min-content;
+        }
+    }
+
+    &__label {
+        font-size: 1.4rem;
+    }
+
+    &__input {
+        border: none;
+        border-radius: 10px;
+        padding-left: 10px;
+        height: 2.6rem;
+        color: $color-primary;
+        box-shadow: 0 .1rem .2rem rgba($color-black, .2);
+
+        &:focus {
+            background-color: $color-white;
+            outline: none;
+        }
+    }
+
+    &__register-grid {
+        margin: 1rem;
+
+        &--full {
+            grid-column: 1 / -1;
+        }
+    }
+}

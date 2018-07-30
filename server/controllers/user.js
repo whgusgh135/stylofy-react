@@ -24,7 +24,17 @@ exports.register = async function(req, res, next) {
             password
         });
 
-        return res.json({"registered": true});
+        // assign json web token when successfully registered
+        const token = jwt.sign({
+            firstName,
+            lastName
+        }, config.JWT_KEY, { expiresIn: "1h" });
+
+        return res.json({
+            token,
+            firstName,
+            lastName
+        });
 
     } catch(error) {
         // 11000 code called because of unique property of phone number
@@ -44,17 +54,21 @@ exports.register = async function(req, res, next) {
 exports.authenticate = async function(req, res, next) {
     try {
         let user = await User.findOne({phoneNumber: req.body.phoneNumber});
+        let { firstName, lastName } = user;
         // check if password matches the stored password
         let isMatch = await user.comparePassword(req.body.password);
         if(isMatch) {
             // assign json web token when successfully signed in
             const token = jwt.sign({
-                phoneNumber: user.phoneNumber,
                 firstName: user.firstName,
                 lastName: user.lastName
             }, config.JWT_KEY, { expiresIn: "1h" });
 
-            return res.json(token);
+            return res.json({
+                token,
+                firstName,
+                lastName
+            });
 
         } else {
             return next({

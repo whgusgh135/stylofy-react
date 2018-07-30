@@ -1,27 +1,54 @@
 import React from 'react';
-import logo from '../styles/img/logo-black.png';
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
-export function Nav() {
-    return (
-        <div className="navigation">
-            <input type="checkbox" className="navigation__checkbox" id="navi-toggle" />
-            <label for="navi-toggle" className="navigation__button">
-                <span className="navigation__icon">&nbsp;</span>
-            </label>
+class Nav extends React.Component {
 
-            <nav className="navigation__nav">
-                <div className="header__logo-box">
-                    <img src={logo} alt="Logo" className="header__logo" />
-                </div>
-                <ul className="navigation__list">
-                    <li className="navigation__item"><a href="#home" className="navigation__link">Home</a></li>
-                    <li className="navigation__item"><a href="#" className="navigation__link">About</a></li>
-                    <li className="navigation__item"><a href="#" className="navigation__link">Info</a></li>
-                    <li className="navigation__item"><a href="#" className="navigation__link">Book</a></li>
-                    <li className="navigation__item"><a href="#" className="navigation__link">Testimonials</a></li>
-                    <li className="navigation__item"><a href="#" className="navigation__link">Become Member</a></li>
-                </ul>
-            </nav>
-        </div>
-    )
+    constructor() {
+        super();
+        this.logout = this.logout.bind(this);
+    }
+
+    logout() {
+        this.props.dispatch(actions.logout());
+    }
+
+    render() {
+        const user = this.props.currentUser.user;
+
+        return (
+            <div className="navigation">
+                <nav className="navigation__nav">
+                    <ul className="navigation__list">
+                        <li className="navigation__item"><Link to="/" className="navigation__link">Home</Link></li>
+                        <li className="navigation__item"><Link to="/" className="navigation__link">About</Link></li>
+                        <li className="navigation__item"><Link to="/" className="navigation__link">Info</Link></li>
+                        <li className="navigation__item"><Link to="/" className="navigation__link">Book</Link></li>
+                        
+                        {this.props.currentUser.isAuthenticated ? (
+                            <div className="navigation__item--auth">
+                                <li className="navigation__profile">Welcome {user.firstName} {user.lastName}</li>
+                                <li className="navigation__item"><Link to="/" className="navigation__link">My Booking</Link></li>
+                                <li className="navigation__item"><p onClick={this.logout} className="navigation__link">Logout</p></li>
+                            </div>
+                        ) : (
+                            <div className="navigation__item--auth">
+                                <li className="navigation__item--login"><Link to="/login" className="navigation__link">Login</Link></li>
+                                <li className="navigation__item--register"><Link to="/register" className="navigation__link">Register</Link></li>
+                            </div>
+                        )} 
+                    </ul>
+                </nav>
+            </div>
+        )
+    }  
 }
+
+function mapStateToProps(state) {
+    return{
+        currentUser: state.authReducer
+    }
+}
+
+export default connect(mapStateToProps)(Nav);
