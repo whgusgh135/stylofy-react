@@ -15,6 +15,10 @@ const mongoose = require("mongoose");
 mongoose.Promise = Promise;
 mongoose.connect(config.DB_URI, { useNewUrlParser: true });
 
+// fix cross origin issue
+const cors = require("cors");
+app.use(cors());
+
 
 // handle routes
 const userRoutes = require("./routes/user");

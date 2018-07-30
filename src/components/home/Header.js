@@ -14,7 +14,7 @@ export function Header() {
             </div>
             <div className="header__scroll">
                 <p className="paragraph-sign">
-                    &xlarr; scroll
+                    &larr; scroll
                 </p>
             </div>
         </header>

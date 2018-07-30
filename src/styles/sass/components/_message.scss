@@ -1,0 +1,11 @@
+.message {
+
+    &__error {
+        color: red;
+        background-color: $color-error;
+        border: 1px red solid;
+        border-radius: 5px;
+        padding: .5rem;
+        text-align: center;
+    }
+}

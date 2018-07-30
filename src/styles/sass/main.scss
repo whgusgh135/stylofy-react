@@ -9,10 +9,11 @@
 @import "components/composition";
 @import "components/feature-box";
 @import "components/card";
-@import "components/background-video";
 @import "components/testimonial";
 @import "components/button";
 @import "components/contact";
+@import "components/auth-form";
+@import "components/message";
 
 @import "layout/header";
 @import "layout/grid";
@@ -20,3 +21,4 @@
 @import "layout/navigation";
 
 @import "pages/home";
+@import "pages/auth";

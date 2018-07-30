@@ -34,7 +34,7 @@ export function Book() {
                         </div>
                         <div className="card__side card__side--back">
                             <div className="card__box">
-                                <p className="card__box--text">Alicia Lalalala</p>
+                                <p className="card__box--text">Angela Lalalala</p>
                                 <a href="#popup" className="btn btn--white">Book Now</a>
                             </div>
                         </div>
