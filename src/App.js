@@ -11,6 +11,7 @@ import Nav from "./components/Nav";
 import { Main } from "./components/Main";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
+import HairdresserList from "./components/booking/HairdresserList";
 
 const store = configureStore();
 
@@ -20,6 +21,7 @@ class App extends Component {
   // this way, redux will have the correct auth state all the time
   componentWillMount() {
     store.dispatch(actions.checkAuthState());
+    store.dispatch(actions.fetchHairdressers());
   }
 
   render() {
@@ -31,6 +33,7 @@ class App extends Component {
             <Route exact path="/" component={Main} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
+            <Route exact path="/book" component={HairdresserList} />
           </div>
         </BrowserRouter>
       </Provider>

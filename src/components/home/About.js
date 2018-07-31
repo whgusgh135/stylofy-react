@@ -17,8 +17,8 @@ export function About() {
 
                 <div className="col-1-of-2">
                     <div className="composition">
-                        <img src={Image1} alt="Photo 1" className="composition__photo composition__photo--p1" />
-                        <img src={Image2} alt="Photo 2" className="composition__photo composition__photo--p2" />                  
+                        <img src={Image1} alt="Girl 1" className="composition__photo composition__photo--p1" />
+                        <img src={Image2} alt="Girl 2" className="composition__photo composition__photo--p2" />                  
                     </div>
                 </div>
             </div>
