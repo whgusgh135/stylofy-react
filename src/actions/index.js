@@ -4,7 +4,9 @@ import * as moment from "moment";
 
 import {SET_CURRENT_USER,
         ADD_ERROR,
-        REMOVE_ERROR } from "./actionTypes";
+        REMOVE_ERROR,
+        FETCH_HAIRDRESSERS,
+        SELECT_HAIRDRESSER } from "./actionTypes";
 
 
 //----- ERROR ACTIONS -----//
@@ -112,6 +114,37 @@ export function checkAuthState() {
                     }));
                 }
             }
+        })
+    }
+}
+
+//----- HAIRDRESSER ACTIONS -----//
+
+const setHairdressers = hairdressers => {
+    return {
+        type: FETCH_HAIRDRESSERS,
+        hairdressers
+    }
+}
+
+const setSelectHairdresser = selectedHairdresser => {
+    return {
+        type: SELECT_HAIRDRESSER,
+        selectedHairdresser
+    }
+}
+
+export function fetchHairdressers() {
+    return dispatch => {
+        return new Promise((resolve, reject) => {
+            return axios.get("http://localhost:3001/api/hairdresser")
+                .then(res => res.data)
+                .then(hairdressers => {
+                    dispatch(setHairdressers(hairdressers));
+                })
+                .catch(error => {
+                    dispatch(addError(error.response.data.error.message));
+                })
         })
     }
 }
