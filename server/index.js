@@ -23,9 +23,11 @@ app.use(cors());
 // handle routes
 const userRoutes = require("./routes/user");
 const hairdresserRoutes = require("./routes/hairdresser");
+const bookingRoutes = require("./routes/booking");
 
 app.use("/api/user", userRoutes);
 app.use("/api/hairdresser", hairdresserRoutes);
+app.use("/api/booking", bookingRoutes);
 
 app.get("/error", function(req, res, next) {
     throw new Error;

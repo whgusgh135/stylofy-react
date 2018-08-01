@@ -19,7 +19,11 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    bookings: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Booking"
+    }]
 });
 
 // hashing password before storing data
