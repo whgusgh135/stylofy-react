@@ -6,7 +6,11 @@ import {SET_CURRENT_USER,
         ADD_ERROR,
         REMOVE_ERROR,
         FETCH_HAIRDRESSERS,
-        SELECT_HAIRDRESSER } from "./actionTypes";
+        SELECT_HAIRDRESSER,
+        SET_DATE,
+        SET_WEEK,
+        SET_TIME,
+        LIST_BOOKINGS } from "./actionTypes";
 
 
 //----- ERROR ACTIONS -----//
@@ -127,7 +131,7 @@ const setHairdressers = hairdressers => {
     }
 }
 
-const setSelectHairdresser = selectedHairdresser => {
+const setSelectedHairdresser = selectedHairdresser => {
     return {
         type: SELECT_HAIRDRESSER,
         selectedHairdresser
@@ -147,4 +151,96 @@ export function fetchHairdressers() {
                 })
         })
     }
+}
+
+export function selectHairdresser(hairdresserId) {
+    return dispatch => {
+        return new Promise((resolve, reject) => {
+            return axios.get(`http://localhost:3001/api/hairdresser/${hairdresserId}`)
+                .then(res => res.data)
+                .then(hairdresser => {
+                    dispatch(setSelectedHairdresser(hairdresser));
+                })
+                .catch(error => {
+                    dispatch(addError(error.response.data.error.message));
+                })
+        })
+    }
+}
+
+
+//----- DATE ACTIONS -----//
+
+export const setDate = day => {
+    return dispatch => {
+        return new Promise((resolve, reject) => {
+            dispatch({
+                type: SET_DATE,
+                day
+            });
+        })
+    }
+}
+
+export const setWeek = week => {
+    return dispatch => {
+        return new Promise((resolve, reject) => {
+            dispatch({
+                type: SET_WEEK,
+                week
+            });
+        })
+    }
+}
+
+export const setTime = time => {
+    return dispatch => {
+        return new Promise((resolve, reject) => {
+            dispatch({
+                type: SET_TIME,
+                time
+            })
+        })
+    }
+}
+
+
+//----- BOOKING ACTIONS -----//
+const listBookings = bookings => {
+    return {
+        type: LIST_BOOKINGS,
+        bookings
+    }
+}
+
+export function fetchBookings(hairdresserId) {
+    return dispatch => {
+        return new Promise((resolve, reject) => {
+            return axios.get(`http://localhost:3001/api/hairdresser/${hairdresserId}/booking`)
+                .then(res => res.data)
+                .then(bookings => {
+                    dispatch(listBookings(bookings));
+                })
+                .catch(error => {
+                    dispatch(addError(error.response.data.error.message));
+                })
+        })
+    }
+}
+
+export function makeBooking(hairdresserId, ...userData) {
+    return dispatch => {
+        return new Promise((resolve, reject) => {
+            return axios.post(`http://localhost:3001/api/hairdresser/${hairdresserId}/booking`, {...userData})
+                .then(res => res.data)
+                .then(({...user}) => {
+                    // redux action
+                    resolve();
+                })
+                .catch(error => {
+                    dispatch(addError(error.response.data.error.message));
+                    reject();
+                });
+        });
+    };
 }

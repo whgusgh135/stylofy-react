@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export function HairdresserCard(props) {
 
@@ -16,7 +17,7 @@ export function HairdresserCard(props) {
                 <div className="card__side card__side--back">
                     <div className="card__box">
                         <p className="card__box--text">{props.hairdresser.name}</p>
-                        <a href="#popup" className="btn btn--white">Book Now</a>
+                        <Link to={`/hairdresser/${props.hairdresser._id}/book`} className="btn btn--white">Book Now</Link>
                     </div>
                 </div>
             </div>

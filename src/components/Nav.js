@@ -24,7 +24,7 @@ class Nav extends React.Component {
                         <li className="navigation__item"><Link to="/" className="navigation__link">Home</Link></li>
                         <li className="navigation__item"><Link to="/" className="navigation__link">About</Link></li>
                         <li className="navigation__item"><Link to="/" className="navigation__link">Info</Link></li>
-                        <li className="navigation__item"><Link to="/book" className="navigation__link">Book</Link></li>
+                        <li className="navigation__item"><Link to="/hairdresser" className="navigation__link">Book</Link></li>
                         
                         {this.props.currentUser.isAuthenticated ? (
                             <div className="navigation__item--auth">
