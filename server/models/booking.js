@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
 const bookingSchema = new mongoose.Schema({
-    startAt: {
+    date: {
         type: Date,
         required: true
     },
-    endAt: {
-        type: Date,
+    time: {
+        type: Number,
         required: true
     },
     user: { 

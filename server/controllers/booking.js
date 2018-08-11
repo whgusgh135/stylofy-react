@@ -1,21 +1,58 @@
 const Booking = require("../models/booking");
 const Hairdresser = require("../models/hairdresser");
+const User = require("../models/user");
+const moment = require("moment");
 
-exports.createBooking = async function(req, res, next) {
+exports.getBookings = async function(req, res, next) {
     try {
-        const {startAt, endAt, hairdresser} = req.body;
-
-        Hairdresser.findById(hairdresser._id)
+        Hairdresser.findById(req.params.id)
             .populate("bookings")
-            .exec(function(error, selectedHairdresser) {
+            .exec(async function(error, foundHairdresser) {
                 if(error) {
                     return next(error);
                 }
-                if(isValidBooking(startAt, endAt, selectedHairdresser)) {
-                    // save booking
+                let bookings = foundHairdresser.bookings;
+                return res.status(200).json(bookings);
+        });
+    } catch(error) {
+        return next(error);
+    }
+}
+
+exports.createBooking = async function(req, res, next) {
+    try {
+        const {date, time, user} = req.body;
+
+        Hairdresser.findById(req.params.id)
+            .populate("bookings")
+            .exec(async function(error, selectedHairdresser) {
+                if(error) {
+                    return next(error);
                 }
 
-            })
+                if(isValidBooking(date, time, selectedHairdresser)) {
+                    const booking = new Booking({ date, time, hairdresser: selectedHairdresser});
+                    // save booking on hairdresser model
+                    selectedHairdresser.bookings.push(booking);
+                    await selectedHairdresser.save();
+                    // save booking on booking model
+                    await Booking.create(booking);
+                    // save booking on user model
+                    await User.findById(user._id)
+                        .populate("bookings")
+                        .exec(async function(error, selectedUser) {
+                            if(error) {
+                                return next(error);
+                            }
+                            selectedUser.bookings.push(booking);
+                            await selectedUser.save();
+                    });
+                    return res.json({"book": true});
+
+                } else {
+                    return res.json({"book": false});
+                }
+            });
 
     } catch(error) {
         return next(error);
@@ -24,13 +61,21 @@ exports.createBooking = async function(req, res, next) {
 
 // check there is not overlap booking
 // will implement on client side to stop this but just in case
-function isValidBooking(startAt, endAt, hairdresser) {
+function isValidBooking(date, time, hairdresser) {
     let isValid = true;
 
     // check if there is any booking first
     if(hairdresser.bookings) {
         isValid = hairdresser.bookings.every(function(booking) {
-
+            // check only bookings with the same date
+            if (moment(date).month() === moment(booking.date).month()
+                && moment(date).date() === moment(booking.date).date()) 
+            {
+                return (!(booking.time === time));
+            } else {
+                return true;
+            }
         })
     }
+    return isValid;
 }

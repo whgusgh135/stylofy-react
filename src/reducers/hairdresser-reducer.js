@@ -13,7 +13,7 @@ export const hairdresserReducer = (state = INITIAL_STATE, action) => {
             }
         case SELECT_HAIRDRESSER:
             return {
-                ...state, hairdressers: action.selectedHairdresser
+                ...state, selected: action.selectedHairdresser
             }
         default:
             return state;

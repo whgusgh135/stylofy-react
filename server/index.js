@@ -27,7 +27,7 @@ const bookingRoutes = require("./routes/booking");
 
 app.use("/api/user", userRoutes);
 app.use("/api/hairdresser", hairdresserRoutes);
-app.use("/api/booking", bookingRoutes);
+app.use("/api/hairdresser", bookingRoutes);
 
 app.get("/error", function(req, res, next) {
     throw new Error;
