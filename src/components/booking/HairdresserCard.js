@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 
 export function HairdresserCard(props) {
 
-    const index = props.index + 1;
-    const pictureCardClass = "card__picture card__picture--" + index;
+    const pictureCardClass = "card__picture card__picture--" + props.index;
 
     return(
         <div className="col-1-of-3">

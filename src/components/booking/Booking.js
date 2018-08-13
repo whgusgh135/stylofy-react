@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
-import { BookingWeek } from "./BookingWeek";
+import { BookingDate } from "./BookingDate";
 import BookingTimetable from "./BookingTimetable";
 import BookingForm from "./BookingForm";
 
@@ -9,9 +9,8 @@ class Booking extends React.Component {
     constructor() {
         super();
 
-        this.nextWeek = this.nextWeek.bind(this);
-        this.prevWeek = this.prevWeek.bind(this);
-        
+        this.nextDay = this.nextDay.bind(this);
+        this.prevDay = this.prevDay.bind(this);    
     }
 
     
@@ -20,23 +19,23 @@ class Booking extends React.Component {
         const hairdresserId = this.props.match.params.id;
 
         this.props.dispatch(actions.selectHairdresser(hairdresserId));
-        this.props.dispatch(actions.fetchBookings(hairdresserId));
+        this.props.dispatch(actions.fetchBookings(hairdresserId, this.props.date.day));
     }
 
-    nextWeek() {
-        const thisWeek = this.props.date.week;
-        const nextWeek = thisWeek.map(date => {
-            return new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000)
-        });
-        this.props.dispatch(actions.setWeek(nextWeek));
+    nextDay() {
+        const hairdresserId = this.props.match.params.id;
+        const today = this.props.date.day;
+        const nextDay = new Date(today.getTime() + 24 * 60 * 60 * 1000);
+        this.props.dispatch(actions.setDate(nextDay));
+        this.props.dispatch(actions.fetchBookings(hairdresserId, nextDay));
     }
 
-    prevWeek() {
-        const thisWeek = this.props.date.week;
-        const prevWeek = thisWeek.map(date => {
-            return new Date(date.getTime() - 7 * 24 * 60 * 60 * 1000)
-        });
-        this.props.dispatch(actions.setWeek(prevWeek));
+    prevDay() {
+        const hairdresserId = this.props.match.params.id;
+        const today = this.props.date.day;
+        const prevDay = new Date(today.getTime() -  24 * 60 * 60 * 1000);
+        this.props.dispatch(actions.setDate(prevDay));
+        this.props.dispatch(actions.fetchBookings(hairdresserId, prevDay));
     }
 
     render() {
@@ -44,20 +43,28 @@ class Booking extends React.Component {
 
         if(hairdresser.selected) {
             return(
-                <div>
-                    <br/><br/><br/>
-                    <h1>{hairdresser.selected.name}</h1>
-                    <BookingWeek 
-                        week={this.props.date.week}
-                    />
-                    <button onClick={this.prevWeek}>Prev Week</button>
-                    <button onClick={this.nextWeek}>Next Week</button>
+                <div className="booking">
+                    
+                    <div className="booking__heading">
+                        <h2 className="heading-secondary u-margin-bottom-small">{hairdresser.selected.name}</h2>
+                        <div className="booking__heading--date">
+                            <button className="btn btn--small" onClick={this.prevDay}>&larr;</button>
+                            <BookingDate 
+                                day={this.props.date.day}
+                            />
+                            <button className="btn btn--small" onClick={this.nextDay}>&rarr;</button>
+                        </div>
+                    </div>
                 
                     <BookingTimetable 
-                        week={this.props.date.week}
+                        day={this.props.date.day}
+                        booking={this.props.booking.bookings}
+                        hairdresserIndex={hairdresser.selected.index}
                     />
 
-                    <BookingForm />
+                    <BookingForm 
+                        hairdresserId={this.props.match.params.id}
+                    />
                 </div>
             )
         } else {
@@ -71,7 +78,8 @@ class Booking extends React.Component {
 function mapStateToProps(state) {
     return {
         hairdresser: state.hairdresserReducer,
-        date: state.dateReducer
+        date: state.dateReducer,
+        booking: state.bookingReducer
     }
 }
 

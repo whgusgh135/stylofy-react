@@ -11,12 +11,12 @@ class HairdresserList extends React.Component {
     }
 
     renderHairdressers() {
-        return this.props.hairdressers.map((hairdresser, index) => {
+        return this.props.hairdressers.map(hairdresser => {
             return (
                 <HairdresserCard
                     key={hairdresser._id}
                     hairdresser={hairdresser}
-                    index={index}
+                    index={hairdresser.index}
                 />
             )
         })

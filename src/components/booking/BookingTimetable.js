@@ -1,38 +1,68 @@
 import React from "react";
-import BookingTimetableWeek from "./BookingTimetableWeek";
 import * as actions from "../../actions";
 import { connect } from "react-redux";
 
 class BookingTimetable extends React.Component{
     constructor(props) {
         super(props);
+        this.setTime = this.setTime.bind(this);
     }
 
-    setDay(day) {
-        this.props.dispatch(actions.setDate(day))
+    setTime(time) {
+        this.props.dispatch(actions.setTime(time));
     }
 
-    renderDay() {
-        const week = this.props.week;
-        return week.map((day, index) => {
-            return(
-                <div onClick={() => this.setDay(day)}>
-                    <BookingTimetableWeek
-                        index={index}
-                        day={day}
-                    />
-                </div>
-            )
-        })
+    renderTime() {
+        const times = [];
+        let num;
+        let amOrPm = "am";
+
+        for(let i = 10; i < 21; i++){
+            if(i > 12) {
+                num = i - 12;
+                amOrPm = "pm";
+            } else {
+                num = i;
+            }
+            if(i === 12) {
+                amOrPm = "pm";
+            }
+
+            // check if each time is booked or not by going through bookings
+            let booked = this.props.booking.some(booking => {
+                return booking.time == i;
+            })
+
+            // style booked time
+            if(booked) {
+                times.push(
+                    <button disabled className="btn--disabled" onClick={() => this.setTime(i)}>{num} {amOrPm}</button>
+                )
+
+            // style open time
+            } else {
+                times.push(
+                    <button className="btn btn--timetable" onClick={() => this.setTime(i)}>{num} {amOrPm}</button>
+                ) 
+            }      
+        }
+        return times;
     }
 
     render() {
-        
-        var options = { weekday: 'short', month: 'long', day: 'numeric' };
+        const timetableClass = "booking__timetable booking__timetable--" + this.props.hairdresserIndex;
+
         
         return(
-            <div>
-                {this.renderDay()}
+            <div className={timetableClass}>
+                <h4 className="heading-booking">Timetable</h4>
+                <h4 className="u-margin-bottom-medium">
+                    {this.props.day.toLocaleDateString("en-US", { weekday: 'short', month: 'long', day: 'numeric' })}
+                </h4>
+
+                <div className="booking__times">
+                    {this.renderTime()}
+                </div>
             </div>
         )
     }

@@ -31,7 +31,7 @@ exports.createBooking = async function(req, res, next) {
                 }
 
                 if(isValidBooking(date, time, selectedHairdresser)) {
-                    const booking = new Booking({ date, time, hairdresser: selectedHairdresser});
+                    const booking = new Booking({ date, time, hairdresser: selectedHairdresser, user});
                     // save booking on hairdresser model
                     selectedHairdresser.bookings.push(booking);
                     await selectedHairdresser.save();
@@ -47,12 +47,17 @@ exports.createBooking = async function(req, res, next) {
                             selectedUser.bookings.push(booking);
                             await selectedUser.save();
                     });
-                    return res.json({"book": true});
+
+                    return res.status(200).json({"booking": true});
 
                 } else {
-                    return res.json({"book": false});
+                    let message = "The booking already exists."
+                    return next({
+                        status: 400,
+                        message
+                    });
                 }
-            });
+        });
 
     } catch(error) {
         return next(error);

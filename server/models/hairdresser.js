@@ -5,7 +5,8 @@ const hairdresserSchema = new mongoose.Schema({
     bookings: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Booking"
-    }]
+    }],
+    index: Number
 });
 
 module.exports = mongoose.model("Hairdresser", hairdresserSchema);
