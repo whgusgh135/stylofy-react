@@ -8,7 +8,6 @@ import {SET_CURRENT_USER,
         FETCH_HAIRDRESSERS,
         SELECT_HAIRDRESSER,
         SET_DATE,
-        SET_WEEK,
         SET_TIME,
         LIST_BOOKINGS } from "./actionTypes";
 
@@ -182,17 +181,6 @@ export const setDate = day => {
     }
 }
 
-export const setWeek = week => {
-    return dispatch => {
-        return new Promise((resolve, reject) => {
-            dispatch({
-                type: SET_WEEK,
-                week
-            });
-        })
-    }
-}
-
 export const setTime = time => {
     return dispatch => {
         return new Promise((resolve, reject) => {
@@ -213,13 +201,17 @@ const listBookings = bookings => {
     }
 }
 
-export function fetchBookings(hairdresserId) {
+export function fetchBookings(hairdresserId, date) {
     return dispatch => {
         return new Promise((resolve, reject) => {
             return axios.get(`http://localhost:3001/api/hairdresser/${hairdresserId}/booking`)
                 .then(res => res.data)
                 .then(bookings => {
-                    dispatch(listBookings(bookings));
+                    let validBookings = bookings.filter(booking => {
+                        return (moment(booking.date).month() === moment(date).month() 
+                                && moment(booking.date).date() === moment(date).date());
+                    })
+                    dispatch(listBookings(validBookings));
                 })
                 .catch(error => {
                     dispatch(addError(error.response.data.error.message));
@@ -228,15 +220,24 @@ export function fetchBookings(hairdresserId) {
     }
 }
 
-export function makeBooking(hairdresserId, ...userData) {
+export function makeBooking(hairdresserId, userData) {
     return dispatch => {
         return new Promise((resolve, reject) => {
-            return axios.post(`http://localhost:3001/api/hairdresser/${hairdresserId}/booking`, {...userData})
-                .then(res => res.data)
-                .then(({...user}) => {
-                    // redux action
-                    resolve();
-                })
+
+            const token = sessionStorage.getItem("jwtToken");
+            let user;
+
+            if(token) {
+                // check if the token is valid
+                const decodedToken = jwt.decode(token);
+                user = {"_id": decodedToken.userId};
+            }
+
+            return axios.post(`http://localhost:3001/api/hairdresser/${hairdresserId}/booking`, {user, ...userData})
+                .then(res => resolve())
+
+                    
+
                 .catch(error => {
                     dispatch(addError(error.response.data.error.message));
                     reject();

@@ -23,11 +23,12 @@ exports.register = async function(req, res, next) {
             phoneNumber,
             password
         });
-
+        let user = await User.findOne({phoneNumber});
         // assign json web token when successfully registered
         const token = jwt.sign({
             firstName,
-            lastName
+            lastName,
+            userId: user._id
         }, config.JWT_KEY, { expiresIn: "1h" });
 
         return res.json({
@@ -61,7 +62,8 @@ exports.authenticate = async function(req, res, next) {
             // assign json web token when successfully signed in
             const token = jwt.sign({
                 firstName: user.firstName,
-                lastName: user.lastName
+                lastName: user.lastName,
+                userId: user._id
             }, config.JWT_KEY, { expiresIn: "1h" });
 
             return res.json({
