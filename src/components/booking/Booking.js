@@ -46,6 +46,7 @@ class Booking extends React.Component {
                 <div className="booking">
                     
                     <div className="booking__heading">
+                        <img className="booking__heading--image" src={require(`../../styles/img/hairdresser-${hairdresser.selected.index}.jpg`)} />
                         <h2 className="heading-secondary u-margin-bottom-small">{hairdresser.selected.name}</h2>
                         <div className="booking__heading--date">
                             <button className="btn btn--small" onClick={this.prevDay}>&larr;</button>

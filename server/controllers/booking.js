@@ -84,3 +84,54 @@ function isValidBooking(date, time, hairdresser) {
     }
     return isValid;
 }
+
+exports.getUserBookings = async function(req, res, next) {
+    try {
+        User.findById(req.params.id)
+            .populate("bookings")
+            .exec(async function(error, foundUser) {
+                if(error) {
+                    return next(error);
+                }
+                let bookings = foundUser.bookings;
+                return res.status(200).json(bookings);
+        });
+    } catch(error) {
+        return next(error);
+    }
+}
+
+exports.deleteBooking = async function(req, res, next) {
+    try {
+        // remove booking
+        let foundBooking = await Booking.findById(req.params.booking_id);
+        await foundBooking.remove();
+
+        // remove the booking from user model
+        await User.findById(req.params.id)
+            .populate("bookings")
+            .exec(async function(error, foundUser) {
+                if(error) {
+                    return next(error);
+                }
+                foundUser.bookings = foundUser.bookings.filter(booking => booking._id !== req.params.booking_id);
+                await User.findByIdAndUpdate(req.params.id, foundUser);
+        });
+
+        // remove the booking from hairdresser model
+        await Hairdresser.findById(req.body.hairdresserId)
+            .populate("bookings")
+            .exec(async function(error, foundHairdresser) {
+                if(error) {
+                    return next(error);
+                }
+                foundHairdresser.bookings = foundHairdresser.bookings.filter(booking => booking._id !== req.params.booking_id);
+                await Hairdresser.findByIdAndUpdate(req.body.hairdresserId, foundHairdresser);
+        });
+        
+
+        return res.status(200).json({"message": "The booking is deleted."});
+    } catch(error) {
+        return next(error);
+    }
+}

@@ -92,6 +92,9 @@ body {
 .u-margin-top-small {
   margin-top: 1.5rem !important; }
 
+.u-flex-row {
+  display: flex; }
+
 @keyframes moveInBottom {
   0% {
     opacity: 0;
@@ -363,6 +366,9 @@ body {
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   align-items: start; }
+  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+    .booking {
+      grid-template-columns: 1fr; } }
   .booking__heading {
     margin-top: 8rem;
     grid-column: 1 / -1;
@@ -371,6 +377,11 @@ body {
     flex-direction: column;
     align-items: center;
     margin-bottom: 5rem; }
+    .booking__heading--image {
+      width: 7rem;
+      height: 7rem;
+      border-radius: 10rem;
+      margin-right: 1.5rem; }
     .booking__heading--date {
       display: flex;
       align-items: center; }
@@ -383,6 +394,9 @@ body {
     background-size: cover;
     background-position: center;
     position: relative; }
+    @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+      .booking__timetable {
+        margin-bottom: 0; } }
     .booking__timetable--1 {
       background-image: linear-gradient(to right, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(../img/hairdresser-1.jpg); }
     .booking__timetable--2 {
@@ -400,6 +414,31 @@ body {
     border-radius: 0.5rem;
     padding: 6rem;
     text-align: center; }
+    @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+      .booking__form {
+        margin-bottom: 3rem; } }
+
+.user-booking {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem 3rem;
+  border: 1px solid #333;
+  width: max-content;
+  margin: 2rem auto;
+  padding: 1rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #f7f7f7;
+  flex-wrap: wrap; }
+  .user-booking__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-right: 2rem; }
+  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+    .user-booking__btn {
+      width: min-content;
+      font-size: 1.2rem; } }
 
 .header {
   height: 100vh;
@@ -486,6 +525,9 @@ body {
   transition: opacity .5s;
   display: flex;
   align-items: center; }
+  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+    .navigation__nav {
+      padding-left: 2rem; } }
 
 .navigation__list {
   list-style: none;
@@ -498,6 +540,10 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center; }
+
+@media only screen and (max-width: 56.25em), only screen and (hover: none) {
+  .navigation__item--non-essential {
+    display: none; } }
 
 .navigation__link, .navigation__link:link, .navigation__link:visited {
   display: inline-block;
@@ -518,6 +564,9 @@ body {
   font-weight: 400;
   text-decoration: none;
   margin: 3rem; }
+  @media only screen and (max-width: 62.5em), only screen and (hover: none) {
+    .navigation__profile {
+      display: none; } }
 
 .section-about {
   background-color: #f7f7f7;

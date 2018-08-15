@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import * as actions from "../../actions";
 
 class BookingForm extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+    
 
     async book() {  
         await this.props.dispatch(actions.makeBooking(

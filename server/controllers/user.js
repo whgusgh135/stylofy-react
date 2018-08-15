@@ -34,7 +34,8 @@ exports.register = async function(req, res, next) {
         return res.json({
             token,
             firstName,
-            lastName
+            lastName,
+            userId: user._id
         });
 
     } catch(error) {
@@ -69,7 +70,8 @@ exports.authenticate = async function(req, res, next) {
             return res.json({
                 token,
                 firstName,
-                lastName
+                lastName,
+                userId: user._id
             });
 
         } else {

@@ -1,0 +1,28 @@
+.user-booking {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem 3rem;
+    border: 1px solid $color-primary;
+    width: max-content;
+    margin: 2rem auto;
+    padding: 1rem 1rem;
+    border-radius: 0.5rem;
+    background-color: $color-grey-light;
+    flex-wrap: wrap;
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin-right: 2rem;
+    }
+
+    &__btn {
+        @media only screen and (max-width: 56.25em),
+        only screen and (hover: none) {
+            width: min-content;
+            font-size: 1.2rem;
+        }
+    }
+}

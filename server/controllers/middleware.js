@@ -1,14 +1,14 @@
 const jwt = require("jsonwebtoken");
 const config = require("../config/dev");
 
-exports.loginRequired = function(req, res, next) {
+exports.loginRequired = async function(req, res, next) {
     try {
         const token = req.headers.authorization.split(" ")[1];
         jwt.verify(token, config.JWT_KEY, function(error, decoded){
-            if (decoded) {
+            if(decoded) {
                 return next();
             } else {
-                return next(error);
+                return next({status: 401, message: "Unauthorized"});
             }
         })
 
@@ -17,14 +17,14 @@ exports.loginRequired = function(req, res, next) {
     }
 };
 
-exports.ensureCorrectUser = function(req, res, next) {
+exports.ensureCorrectUser = async function(req, res, next) {
     try {
         const token = req.headers.authorization.split(" ")[1];
         jwt.verify(token, config.JWT_KEY, function(error, decoded){
             if(decoded && decoded.userId === req.params.id) {
                 return next();
             } else {
-                return next(error);
+                return next({status: 401, message: "Unauthorized"});
             }
         })
     } catch(error) {

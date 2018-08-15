@@ -10,3 +10,5 @@ export const SET_DATE = "SET_DATE";
 export const SET_TIME = "SET_TIME";
 
 export const LIST_BOOKINGS = "LIST_BOOKINGS";
+export const LIST_USER_BOOKINGS = "LIST_USER_BOOKINGS";
+export const DELETE_USER_BOOKING = "DELETE_USER_BOOKING";

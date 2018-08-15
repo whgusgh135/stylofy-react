@@ -5,6 +5,11 @@
     justify-items: center;
     align-items: start;
 
+    @media only screen and (max-width: 56.25em),
+    only screen and (hover: none) {
+        grid-template-columns: 1fr;
+    }
+
 
    &__heading {
         margin-top: 8rem;
@@ -16,6 +21,13 @@
         align-items: center;
 
         margin-bottom: 5rem;
+
+        &--image {
+            width: 7rem;
+            height: 7rem;
+            border-radius: 10rem;
+            margin-right: 1.5rem;
+        }
 
         &--date {
             display: flex;
@@ -33,6 +45,11 @@
         background-size: cover;
         background-position: center;
         position: relative;
+
+        @media only screen and (max-width: 56.25em),
+        only screen and (hover: none) {
+            margin-bottom: 0;
+        }
 
         &--1 {
             background-image: 
@@ -73,6 +90,11 @@
         border-radius: 0.5rem;
         padding: 6rem;
         text-align: center;
+
+        @media only screen and (max-width: 56.25em),
+        only screen and (hover: none) {
+            margin-bottom: 3rem;
+        }
     }
     
 }
