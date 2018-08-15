@@ -30,7 +30,7 @@ class BookingTimetable extends React.Component{
 
             // check if each time is booked or not by going through bookings
             let booked = this.props.booking.some(booking => {
-                return booking.time == i;
+                return booking.time === i;
             })
 
             // style booked time

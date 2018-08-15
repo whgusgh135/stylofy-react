@@ -6,4 +6,5 @@ const { loginRequired } = require("../controllers/middleware");
 router.post("/:id/booking", loginRequired, Booking.createBooking);
 router.get("/:id/booking", Booking.getBookings);
 
+
 module.exports = router;

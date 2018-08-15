@@ -9,7 +9,9 @@ import {SET_CURRENT_USER,
         SELECT_HAIRDRESSER,
         SET_DATE,
         SET_TIME,
-        LIST_BOOKINGS } from "./actionTypes";
+        LIST_BOOKINGS, 
+        LIST_USER_BOOKINGS,
+        DELETE_USER_BOOKING} from "./actionTypes";
 
 
 //----- ERROR ACTIONS -----//
@@ -111,12 +113,59 @@ export function checkAuthState() {
                 const isValid = moment.unix(decodedToken.exp);
     
                 if(isValid) {
+                    setAuthorizationToken(token);
                     dispatch(setCurrentUser({
                         firstName: decodedToken.firstName,
-                        lastName: decodedToken.lastName
+                        lastName: decodedToken.lastName,
+                        userId: decodedToken.userId
                     }));
                 }
             }
+        })
+    }
+}
+
+const listUserBookings = userBookings => {
+    return {
+        type: LIST_USER_BOOKINGS,
+        userBookings
+    }
+}
+
+export function fetchUserBookings(userId) {
+    return dispatch => {
+        return new Promise((resolve, reject) => {
+            return axios.get(`http://localhost:3001/api/user/${userId}/bookings`)
+                .then(res => res.data)
+                .then(bookings => {
+                    dispatch(listUserBookings(bookings));
+                })
+                .catch(error => {
+                    dispatch(addError(error.response.data.error.message));
+                })
+        })
+    }
+}
+
+const deleteUserBooking = id => {
+    return{
+        type: DELETE_USER_BOOKING,
+        id
+    } 
+
+}
+
+export function removeUserBooking(userId, bookingId, hairdresserId) {
+    return dispatch => {
+        return new Promise((resolve, reject) => {
+            return axios.delete(`http://localhost:3001/api/user/${userId}/booking/${bookingId}`, { data: {"hairdresserId": hairdresserId}})
+                .then(res => {
+                    dispatch(deleteUserBooking(bookingId));
+                    console.log(res);
+                })
+                .catch(error => {
+                    dispatch(addError(error));
+                })
         })
     }
 }

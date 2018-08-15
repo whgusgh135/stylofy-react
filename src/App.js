@@ -13,6 +13,10 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import HairdresserList from "./components/booking/HairdresserList";
 import Booking from "./components/booking/Booking";
+import UserBooking from "./components/booking/UserBooking";
+
+// import high order components
+import { withAuth } from "./components/hocs/withAuth";
 
 const store = configureStore();
 
@@ -22,6 +26,7 @@ class App extends Component {
   // this way, redux will have the correct auth state all the time
   componentWillMount() {
     store.dispatch(actions.checkAuthState());
+    store.dispatch(actions.fetchHairdressers());
   }
 
   render() {
@@ -35,6 +40,7 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/hairdresser" component={HairdresserList} />
             <Route exact path="/hairdresser/:id/book" component={Booking} />
+            <Route exact path="/user/bookings" component={withAuth(UserBooking)} />
           </div>
         </BrowserRouter>
       </Provider>
