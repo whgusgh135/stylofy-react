@@ -60,7 +60,7 @@ const setCurrentUser = user => {
 export function authUser(userData) {
     return dispatch => {
         return new Promise((resolve, reject) => {
-            return axios.post("http://localhost:3001/api/user/auth", {...userData})
+            return axios.post("/api/user/auth", {...userData})
                 .then(res => res.data)
                 .then(({ token, ...user}) => {
                     // send token to req.header
@@ -94,7 +94,7 @@ export function logout() {
 export function register(userData) {
     return dispatch => {
         return new Promise((resolve, reject) => {
-            return axios.post("http://localhost:3001/api/user/register", {...userData})
+            return axios.post("/api/user/register", {...userData})
                 .then(res => res.data)
                 .then(({ token, ...user}) => {
                     // automatically logs in when successfully registered
@@ -146,7 +146,7 @@ const listUserBookings = userBookings => {
 export function fetchUserBookings(userId) {
     return dispatch => {
         return new Promise((resolve, reject) => {
-            return axios.get(`http://localhost:3001/api/user/${userId}/bookings`)
+            return axios.get(`/api/user/${userId}/bookings`)
                 .then(res => res.data)
                 .then(bookings => {
                     dispatch(listUserBookings(bookings));
@@ -169,7 +169,7 @@ const deleteUserBooking = id => {
 export function removeUserBooking(userId, bookingId, hairdresserId) {
     return dispatch => {
         return new Promise((resolve, reject) => {
-            return axios.delete(`http://localhost:3001/api/user/${userId}/booking/${bookingId}`, { data: {"hairdresserId": hairdresserId}})
+            return axios.delete(`/api/user/${userId}/booking/${bookingId}`, { data: {"hairdresserId": hairdresserId}})
                 .then(res => {
                     dispatch(deleteUserBooking(bookingId));
                     console.log(res);
@@ -200,7 +200,7 @@ const setSelectedHairdresser = selectedHairdresser => {
 export function fetchHairdressers() {
     return dispatch => {
         return new Promise((resolve, reject) => {
-            return axios.get("http://localhost:3001/api/hairdresser")
+            return axios.get("/api/hairdresser")
                 .then(res => res.data)
                 .then(hairdressers => {
                     dispatch(setHairdressers(hairdressers));
@@ -215,7 +215,7 @@ export function fetchHairdressers() {
 export function selectHairdresser(hairdresserId) {
     return dispatch => {
         return new Promise((resolve, reject) => {
-            return axios.get(`http://localhost:3001/api/hairdresser/${hairdresserId}`)
+            return axios.get(`/api/hairdresser/${hairdresserId}`)
                 .then(res => res.data)
                 .then(hairdresser => {
                     dispatch(setSelectedHairdresser(hairdresser));
@@ -264,7 +264,7 @@ const listBookings = bookings => {
 export function fetchBookings(hairdresserId, date) {
     return dispatch => {
         return new Promise((resolve, reject) => {
-            return axios.get(`http://localhost:3001/api/hairdresser/${hairdresserId}/booking`)
+            return axios.get(`/api/hairdresser/${hairdresserId}/booking`)
                 .then(res => res.data)
                 .then(bookings => {
                     let validBookings = bookings.filter(booking => {
@@ -293,7 +293,7 @@ export function makeBooking(hairdresserId, userData) {
                 user = {"_id": decodedToken.userId};
             }
 
-            return axios.post(`http://localhost:3001/api/hairdresser/${hairdresserId}/booking`, {user, ...userData})
+            return axios.post(`/api/hairdresser/${hairdresserId}/booking`, {user, ...userData})
                 .then(res => {
                     console.log("success");
                     resolve();
