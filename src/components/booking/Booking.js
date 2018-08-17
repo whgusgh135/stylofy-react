@@ -18,8 +18,13 @@ class Booking extends React.Component {
     componentWillMount() {
         const hairdresserId = this.props.match.params.id;
 
+        this.props.dispatch(actions.setDate(new Date()));
         this.props.dispatch(actions.selectHairdresser(hairdresserId));
         this.props.dispatch(actions.fetchBookings(hairdresserId, this.props.date.day));
+    }
+
+    componentDidMount() {
+        window.scrollTo(0, 0);
     }
 
     nextDay() {
@@ -28,6 +33,7 @@ class Booking extends React.Component {
         const nextDay = new Date(today.getTime() + 24 * 60 * 60 * 1000);
         this.props.dispatch(actions.setDate(nextDay));
         this.props.dispatch(actions.fetchBookings(hairdresserId, nextDay));
+        this.props.dispatch(actions.removeError());
     }
 
     prevDay() {
@@ -36,6 +42,7 @@ class Booking extends React.Component {
         const prevDay = new Date(today.getTime() -  24 * 60 * 60 * 1000);
         this.props.dispatch(actions.setDate(prevDay));
         this.props.dispatch(actions.fetchBookings(hairdresserId, prevDay));
+        this.props.dispatch(actions.removeError());
     }
 
     render() {

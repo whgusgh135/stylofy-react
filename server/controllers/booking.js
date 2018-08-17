@@ -21,6 +21,12 @@ exports.getBookings = async function(req, res, next) {
 
 exports.createBooking = async function(req, res, next) {
     try {
+        if(!req.body.time) {
+            return next({
+                status: 400,
+                message: "Please select the time."
+            })
+        }
         const {date, time, user} = req.body;
 
         Hairdresser.findById(req.params.id)

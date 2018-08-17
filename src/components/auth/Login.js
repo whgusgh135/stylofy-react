@@ -12,6 +12,13 @@ class Login extends React.Component {
         this.loginUser = this.loginUser.bind(this);
     }
 
+    componentWillMount() {
+        this.props.dispatch(actions.removeError());
+    }
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     loginUser(userData) {
         this.props.dispatch(actions.authUser(userData));
     }

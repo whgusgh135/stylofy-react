@@ -9,6 +9,9 @@ class HairdresserList extends React.Component {
     componentWillMount() {
         this.props.dispatch(actions.fetchHairdressers());
     }
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
 
     renderHairdressers() {
         return this.props.hairdressers.map(hairdresser => {

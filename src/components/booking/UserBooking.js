@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
+import { Link } from "react-router-dom";
 
 class UserBooking extends React.Component {
 
@@ -36,13 +37,27 @@ class UserBooking extends React.Component {
     }
 
     render(){
-        return (
-            <div>
-                <br /><br /><br />
-                <h3 className="u-center-text heading-secondary">My Bookings</h3>
-                {this.renderBookings()}
-            </div>
-        )
+        if(this.props.booking.userBookings.length > 0) {
+            return (
+                <div className="user">
+                    <h3 className="u-center-text heading-secondary">My Bookings</h3>
+                    {this.renderBookings()}
+                    <div className="u-center-text u-margin-bottom-big u-margin-top-big">
+                        <Link className="btn btn--black user-booking__btn" to="/hairdresser">Make new booking</Link>
+                    </div>
+                </div>
+            )
+        } else {
+            return (
+                <div className="user">
+                    <h3 className="u-center-text heading-secondary">My Bookings</h3>
+                    <p className="u-center-text">You don't have any bookings.</p>
+                    <div className="u-center-text u-margin-bottom-big u-margin-top-big">
+                        <Link className="btn btn--black user-booking__btn" to="/hairdresser">Make new booking</Link>
+                    </div>
+                </div>
+            )
+        }
     }
 }
 
