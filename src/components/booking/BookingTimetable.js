@@ -9,6 +9,7 @@ class BookingTimetable extends React.Component{
     }
 
     setTime(time) {
+        this.props.dispatch(actions.removeError());
         this.props.dispatch(actions.setTime(time));
     }
 

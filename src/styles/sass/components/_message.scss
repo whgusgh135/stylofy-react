@@ -8,4 +8,13 @@
         padding: .5rem;
         text-align: center;
     }
+
+    &__success {
+        color: green;
+        background-color: $color-success;
+        border: 1px green solid;
+        border-radius: 5px;
+        padding: .5rem;
+        text-align: center;
+    }
 }

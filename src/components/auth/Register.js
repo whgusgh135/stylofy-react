@@ -12,6 +12,13 @@ class Register extends React.Component {
         this.register = this.register.bind(this);
     }
 
+    componentWillMount() {
+        this.props.dispatch(actions.removeError());
+    }
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     register(userData) {
         this.props.dispatch(actions.register(userData));
     }

@@ -42,6 +42,14 @@ app.use(function(error, request, response, next) {
         }})
 });
 
+// running static page together with server
+// const path = require("path");
+// const appPath = path.join(__dirname, "..", "build");
+// app.use(express.static(appPath));
+// app.get("*", function(req, res) {
+//     res.sendFile(path.resolve(appPath, "index.html"));
+// });
+
 // listen to env.PORT or localhost:3001
 const PORT = process.env.PORT || 3001;
 

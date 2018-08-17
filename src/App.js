@@ -14,6 +14,10 @@ import Register from "./components/auth/Register";
 import HairdresserList from "./components/booking/HairdresserList";
 import Booking from "./components/booking/Booking";
 import UserBooking from "./components/booking/UserBooking";
+import { Contact } from './components/home/Contact';
+import { Footer } from './components/home/Footer';
+import { About } from "./components/home/About";
+import { Features } from "./components/home/Features";
 
 // import high order components
 import { withAuth } from "./components/hocs/withAuth";
@@ -36,11 +40,15 @@ class App extends Component {
           <div>
             <Nav />
             <Route exact path="/" component={Main} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/info" component={Features} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/hairdresser" component={HairdresserList} />
             <Route exact path="/hairdresser/:id/book" component={Booking} />
             <Route exact path="/user/bookings" component={withAuth(UserBooking)} />
+            <Contact />
+            <Footer />
           </div>
         </BrowserRouter>
       </Provider>

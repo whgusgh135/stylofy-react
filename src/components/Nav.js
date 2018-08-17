@@ -22,8 +22,8 @@ class Nav extends React.Component {
                 <nav className="navigation__nav">
                     <ul className="navigation__list">
                         <li className="navigation__item"><Link to="/" className="navigation__link">Home</Link></li>
-                        <li className="navigation__item navigation__item--non-essential"><Link to="/" className="navigation__link">About</Link></li>
-                        <li className="navigation__item navigation__item--non-essential"><Link to="/" className="navigation__link">Info</Link></li>
+                        <li className="navigation__item navigation__item--non-essential"><Link to="/about" className="navigation__link">About</Link></li>
+                        <li className="navigation__item navigation__item--non-essential"><Link to="/info" className="navigation__link">Info</Link></li>
                         <li className="navigation__item navigation__item--non-essential"><Link to="/hairdresser" className="navigation__link">Book</Link></li>
                         
                         {this.props.currentUser.isAuthenticated ? (
