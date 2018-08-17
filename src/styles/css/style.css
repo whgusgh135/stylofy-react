@@ -297,7 +297,8 @@ body {
 
 .btn--timetable {
   background-color: transparent;
-  cursor: pointer; }
+  cursor: pointer;
+  font-weight: 700; }
   .btn--timetable:visited, .btn--timetable:active, .btn--timetable:focus {
     background-color: #333;
     color: #fff; }
@@ -356,6 +357,14 @@ body {
   color: red;
   background-color: #facac8;
   border: 1px red solid;
+  border-radius: 5px;
+  padding: .5rem;
+  text-align: center; }
+
+.message__success {
+  color: green;
+  background-color: #BEEBAF;
+  border: 1px green solid;
   border-radius: 5px;
   padding: .5rem;
   text-align: center; }
@@ -611,3 +620,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center; }
+
+.user {
+  height: 100vh;
+  margin-top: 10rem; }

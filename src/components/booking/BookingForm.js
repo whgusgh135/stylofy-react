@@ -1,9 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
+import { Error } from "../message/Error";
+import { Success } from "../message/Success";
 
 class BookingForm extends React.Component {
     
+    componentWillMount() {
+        this.props.dispatch(actions.removeError());
+        this.props.dispatch(actions.removeSuccess());
+    }
 
     async book() {  
         await this.props.dispatch(actions.makeBooking(
@@ -14,6 +20,7 @@ class BookingForm extends React.Component {
             }
         ));
         this.props.dispatch(actions.fetchBookings(this.props.hairdresserId, this.props.date.day));
+        this.props.dispatch(actions.addSuccess("Booked Successfully!"));
     }
     renderTime() {
         if(this.props.date.time < 13) {
@@ -40,6 +47,8 @@ class BookingForm extends React.Component {
                     <div className="u-margin-bottom-small">
                         <span className="u-thin-text">Time:</span> <span className="u-bold-text">{time}</span>
                     </div>
+                    <Error error={this.props.error.error} />
+                    <Success success={this.props.success.success} />
                     <button className="btn btn--white u-margin-top-medium" onClick={() => this.book()}>Book</button>
                 </div>
             )
@@ -50,6 +59,7 @@ class BookingForm extends React.Component {
                     <div>
                         Please select the booking time you want!
                     </div>
+                    <Error error={this.props.error.error} />
                     <button className="btn btn--white u-margin-top-medium" onClick={() => this.book()}>Book</button>
                 </div>
             )
@@ -61,7 +71,9 @@ function mapStateToProps(state) {
     return {
         hairdresser: state.hairdresserReducer,
         date: state.dateReducer,
-        auth: state.authReducer
+        auth: state.authReducer,
+        error: state.errorReducer,
+        success: state.successReducer
     }
 }
 

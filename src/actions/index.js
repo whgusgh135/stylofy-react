@@ -5,6 +5,8 @@ import * as moment from "moment";
 import {SET_CURRENT_USER,
         ADD_ERROR,
         REMOVE_ERROR,
+        ADD_SUCCESS,
+        REMOVE_SUCCESS,
         FETCH_HAIRDRESSERS,
         SELECT_HAIRDRESSER,
         SET_DATE,
@@ -23,6 +25,15 @@ export const addError = error => ({
 
 export const removeError = () => ({
     type: REMOVE_ERROR
+});
+
+export const addSuccess = success => ({
+    type: ADD_SUCCESS,
+    success
+});
+
+export const removeSuccess = () => ({
+    type: REMOVE_SUCCESS
 });
 
 
@@ -283,11 +294,12 @@ export function makeBooking(hairdresserId, userData) {
             }
 
             return axios.post(`http://localhost:3001/api/hairdresser/${hairdresserId}/booking`, {user, ...userData})
-                .then(res => resolve())
-
-                    
-
+                .then(res => {
+                    console.log("success");
+                    resolve();
+                })
                 .catch(error => {
+                    console.log("fail");
                     dispatch(addError(error.response.data.error.message));
                     reject();
                 });

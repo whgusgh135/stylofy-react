@@ -13,7 +13,10 @@ exports.loginRequired = async function(req, res, next) {
         })
 
     } catch(error) {
-        return next(error);
+        return next({
+            status: 400,
+            message: "Unauthorized. Please log in first."
+        });
     }
 };
 
@@ -28,6 +31,9 @@ exports.ensureCorrectUser = async function(req, res, next) {
             }
         })
     } catch(error) {
-        return next(error);
+        return next({
+            status: 400,
+            message: "Unauthorized. Please log in first."
+        });
     }
 }

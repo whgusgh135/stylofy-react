@@ -3,6 +3,7 @@ import thunk from "redux-thunk";    // needs thunk for asynchronous dispatch
 
 import { authReducer } from "./auth-reducer";
 import { errorReducer } from "./error-reducer";
+import { successReducer } from "./success-reducer";
 import { hairdresserReducer } from "./hairdresser-reducer";
 import { dateReducer } from "./date-reducer";
 import { bookingReducer } from "./booking-reducer";
@@ -11,6 +12,7 @@ import { bookingReducer } from "./booking-reducer";
 const rootReducer = combineReducers({
     authReducer,
     errorReducer,
+    successReducer,
     hairdresserReducer,
     dateReducer,
     bookingReducer
