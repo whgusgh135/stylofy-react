@@ -1,6 +1,6 @@
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
-const config = require("../config/dev");
+// const config = require("../config/dev");
 
 // register controller
 exports.register = async function(req, res, next) {
@@ -29,7 +29,7 @@ exports.register = async function(req, res, next) {
             firstName,
             lastName,
             userId: user._id
-        }, config.JWT_KEY, { expiresIn: "1h" });
+        }, process.env.JWT_KEY, { expiresIn: "1h" });
 
         return res.json({
             token,
@@ -65,7 +65,7 @@ exports.authenticate = async function(req, res, next) {
                 firstName: user.firstName,
                 lastName: user.lastName,
                 userId: user._id
-            }, config.JWT_KEY, { expiresIn: "1h" });
+            }, process.env.JWT_KEY, { expiresIn: "1h" });
 
             return res.json({
                 token,

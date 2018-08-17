@@ -2,7 +2,8 @@ const express = require("express");
 const app = express();
 
 // import sensitive informations
-const config = require("./config/dev");
+// const config = require("./config/dev");
+// doesnt need it on production env
 
 // middleware that parses req.body to json
 const bodyParser = require("body-parser");
@@ -13,7 +14,9 @@ app.use(bodyParser.json());
 // mlab uses mongod v3.6.6 so it requires userNewUrlParser:true
 const mongoose = require("mongoose");
 mongoose.Promise = Promise;
-mongoose.connect(config.DB_URI, { useNewUrlParser: true });
+// mongoose.connect(config.DB_URI, { useNewUrlParser: true });
+mongoose.connect(process.env.DB_URI, { useNewUrlParser: true });
+
 
 // fix cross origin issue
 const cors = require("cors");
