@@ -41,7 +41,15 @@ class HairdresserList extends React.Component {
             )
         } else {
             return (
-                <h1>Loading...</h1>
+                <section className="section-book">
+                    <h1 className="u-margin-top-big u-center-text">Loading...</h1>
+                    <div class="loading__container">
+                        <span class=""></span>
+                        <div class="loading__line">
+                            <div class="loading__inner"></div>
+                        </div>
+                    </div>
+                </section>  
             )
         }
         

@@ -24,6 +24,10 @@ body {
   background-color: #333;
   color: #fff; }
 
+input:-webkit-autofill {
+  -webkit-text-fill-color: #333;
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset; }
+
 body {
   font-family: "Merriweather", serif;
   font-weight: 400;
@@ -53,8 +57,19 @@ body {
   color: #fff;
   font-size: 1.3rem; }
 
+.heading-booking {
+  font-size: 2.4rem;
+  padding-bottom: 1.8rem; }
+
 .u-center-text {
   text-align: center !important; }
+
+.u-bold-text {
+  font-weight: 700;
+  font-size: 1.8rem; }
+
+.u-thin-text {
+  font-weight: 300; }
 
 .u-margin-bottom-big {
   margin-bottom: 8rem !important; }
@@ -70,6 +85,15 @@ body {
 
 .u-margin-top-huge {
   margin-top: 10rem !important; }
+
+.u-margin-top-medium {
+  margin-top: 4rem !important; }
+
+.u-margin-top-small {
+  margin-top: 1.5rem !important; }
+
+.u-flex-row {
+  display: flex; }
 
 @keyframes moveInBottom {
   0% {
@@ -94,6 +118,29 @@ body {
     transform: rotate(-90deg) translateX(-3rem); }
   100% {
     transform: rotate(-90deg) translateX(0); } }
+
+@keyframes slide {
+  0% {
+    transform-origin: left;
+    transform: scalex(0.3); }
+  25% {
+    transform-origin: left;
+    transform: scalex(1); }
+  26% {
+    transform-origin: right;
+    transform: scalex(1); }
+  50% {
+    transform-origin: right;
+    transform: scalex(0.3); }
+  75% {
+    transform-origin: right;
+    transform: scalex(1); }
+  76% {
+    transform-origin: left;
+    transform: scalex(1); }
+  100% {
+    transform-origin: left;
+    transform: scalex(0.3); } }
 
 .composition {
   position: relative; }
@@ -144,9 +191,9 @@ body {
 
 .card {
   position: relative;
-  height: 30rem; }
+  height: 50rem; }
   .card__side {
-    height: 30rem;
+    height: 45rem;
     position: absolute;
     top: 0;
     left: 0;
@@ -170,7 +217,8 @@ body {
     background-size: cover;
     height: 100%; }
     .card__picture--1 {
-      background-image: url(../img/hairdresser-1.jpg); }
+      background-image: url(../img/hairdresser-1.jpg);
+      background-position: center; }
     .card__picture--2 {
       background-image: url(../img/hairdresser-2.jpg); }
     .card__picture--3 {
@@ -195,7 +243,6 @@ body {
         height: 30rem;
         position: relative; }
         .card__side--back {
-          background-color: #000;
           text-align: center;
           transform: rotateY(0);
           height: 12rem; }
@@ -212,19 +259,6 @@ body {
           margin-bottom: 1rem;
           margin-top: 1rem; } }
 
-.background-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-  opacity: .1; }
-  .background-video__content {
-    height: 100%;
-    width: 100%;
-    object-fit: cover; }
-
 .testimonial {
   width: 75%;
   margin: 0 auto;
@@ -232,6 +266,7 @@ body {
   background-color: #fff; }
 
 .btn, .btn:link, .btn:visited {
+  border: none;
   text-transform: uppercase;
   text-decoration: none;
   padding: 1.5rem 4rem;
@@ -260,9 +295,46 @@ body {
   z-index: -1;
   background-color: #fff; }
 
+.btn:focus {
+  outline: none; }
+
+.btn:active {
+  transform: translateY(0.1rem); }
+
 .btn--white {
   background-color: #fff;
-  color: #333; }
+  color: #333;
+  cursor: pointer; }
+
+.btn--black {
+  background-color: #333;
+  color: #fff;
+  cursor: pointer; }
+
+.btn--small {
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+  padding: 1.2rem 2rem;
+  margin: 2rem; }
+
+.btn--timetable {
+  background-color: transparent;
+  cursor: pointer;
+  font-weight: 700; }
+  .btn--timetable:visited, .btn--timetable:active, .btn--timetable:focus {
+    background-color: #333;
+    color: #fff; }
+
+.btn--disabled {
+  text-decoration: line-through;
+  background-color: transparent;
+  color: #777;
+  border: none;
+  text-transform: uppercase;
+  padding: 1.5rem 4rem;
+  display: inline-block;
+  border-radius: 10rem; }
 
 .contact__text-box {
   color: #777; }
@@ -273,6 +345,157 @@ body {
     .contact__logo {
       display: none; } }
 
+.auth-form {
+  background-color: #f7f7f7;
+  border-radius: 0.5rem;
+  padding: 6rem; }
+  .auth-form__heading {
+    text-align: center; }
+  .auth-form__items {
+    display: flex;
+    flex-direction: column; }
+    .auth-form__items > * {
+      margin-top: 1.6rem; }
+    .auth-form__items--register {
+      display: grid;
+      grid-template-columns: min-content min-content; }
+  .auth-form__label {
+    font-size: 1.4rem; }
+  .auth-form__input {
+    border: none;
+    border-radius: 10px;
+    padding-left: 10px;
+    height: 2.6rem;
+    color: #333;
+    box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.2); }
+    .auth-form__input:focus {
+      background-color: #fff;
+      outline: none; }
+  .auth-form__register-grid {
+    margin: 1rem; }
+    .auth-form__register-grid--full {
+      grid-column: 1 / -1; }
+
+.message__error {
+  color: red;
+  background-color: #facac8;
+  border: 1px red solid;
+  border-radius: 5px;
+  padding: .5rem;
+  text-align: center; }
+
+.message__success {
+  color: green;
+  background-color: #BEEBAF;
+  border: 1px green solid;
+  border-radius: 5px;
+  padding: .5rem;
+  text-align: center; }
+
+.booking {
+  display: grid;
+  grid-template-rows: min-content min-content;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: start; }
+  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+    .booking {
+      grid-template-columns: 1fr; } }
+  .booking__heading {
+    margin-top: 8rem;
+    grid-column: 1 / -1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5rem; }
+    .booking__heading--image {
+      width: 7rem;
+      height: 7rem;
+      border-radius: 10rem;
+      margin-right: 1.5rem; }
+    .booking__heading--date {
+      display: flex;
+      align-items: center; }
+  .booking__timetable {
+    width: 75%;
+    border-radius: 0.5rem;
+    padding: 6rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    background-size: cover;
+    background-position: center;
+    position: relative; }
+    @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+      .booking__timetable {
+        margin-bottom: 0; } }
+    .booking__timetable--1 {
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(../img/hairdresser-1.jpg); }
+    .booking__timetable--2 {
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(../img/hairdresser-2.jpg); }
+    .booking__timetable--3 {
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url(../img/hairdresser-3.jpg); }
+  .booking__times {
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    grid-auto-flow: column; }
+  .booking__form {
+    color: #f7f7f7;
+    width: 75%;
+    background-color: #333;
+    border-radius: 0.5rem;
+    padding: 6rem;
+    text-align: center; }
+    @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+      .booking__form {
+        margin-bottom: 3rem; } }
+  .booking__loading {
+    padding: 20rem 5rem; }
+    @media only screen and (max-width: 56.25em) {
+      .booking__loading {
+        padding: 10rem 0; } }
+
+.user-booking {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 3rem 3rem;
+  border: 1px solid #333;
+  width: max-content;
+  margin: 2rem auto;
+  padding: 1rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #f7f7f7;
+  flex-wrap: wrap; }
+  .user-booking__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-right: 2rem; }
+  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+    .user-booking__btn {
+      width: min-content;
+      font-size: 1.2rem; } }
+
+.loading__container {
+  width: 20rem;
+  height: 20rem;
+  background-size: cover;
+  vertical-align: middle;
+  margin: 1rem auto; }
+
+.loading__line {
+  height: 3px;
+  width: 100%;
+  background: #CCCCCC;
+  margin-top: 30%; }
+
+.loading__inner {
+  width: 100%;
+  height: inherit;
+  background: #333;
+  animation: slide 2s ease-in-out infinite; }
+
 .header {
   height: 100vh;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(../img/stylofy-2.jpg);
@@ -280,7 +503,7 @@ body {
   position: relative; }
   .header__logo-box {
     position: absolute;
-    top: 4rem;
+    top: 10rem;
     left: 4rem;
     animation: 1s moveInBottom ease-out; }
   .header__logo {
@@ -345,83 +568,61 @@ body {
     .footer__link:hover {
       color: #777; }
 
-.navigation__checkbox {
-  display: none; }
-
-.navigation__button {
-  background-color: #fff;
-  height: 5rem;
-  width: 5rem;
-  position: fixed;
-  top: 6rem;
-  right: 6rem;
-  z-index: 5;
-  border-radius: 50%;
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
-  text-align: center;
-  cursor: pointer;
-  animation: 1s moveInBottom ease-out; }
-
 .navigation__nav {
-  height: 100vh;
-  width: 0;
+  height: 6rem;
+  width: 100%;
+  padding-left: 6rem;
   position: fixed;
   top: 0;
   right: 0;
-  opacity: 0;
   z-index: 1;
   background-color: #f7f7f7;
-  transition: opacity .5s; }
+  z-index: 5;
+  transition: opacity .5s;
+  display: flex;
+  align-items: center; }
+  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+    .navigation__nav {
+      padding-left: 2rem; } }
 
 .navigation__list {
-  position: absolute;
-  top: 40%;
-  left: 7rem;
   list-style: none;
-  width: 100%; }
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, min-content) 1fr max-content; }
 
-.navigation__link:link, .navigation__link:visited {
+.navigation__item--auth {
+  grid-column: 6 / 7;
+  display: flex;
+  flex-direction: row;
+  align-items: center; }
+
+@media only screen and (max-width: 56.25em), only screen and (hover: none) {
+  .navigation__item--non-essential {
+    display: none; } }
+
+.navigation__link, .navigation__link:link, .navigation__link:visited {
   display: inline-block;
-  font-size: 3rem;
-  font-weight: 300;
+  font-size: 1.8rem;
+  font-weight: 700;
   text-decoration: none;
-  color: #000; }
+  color: #000;
+  margin: 3rem; }
 
 .navigation__link:hover {
-  color: #777; }
+  color: #777;
+  cursor: pointer; }
 
-.navigation__icon {
-  position: relative;
-  margin-top: 2.5rem; }
-  .navigation__icon, .navigation__icon::before, .navigation__icon::after {
-    width: 2.5rem;
-    height: 1.5px;
-    background-color: #000;
-    display: inline-block; }
-  .navigation__icon::before, .navigation__icon::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    transition: all .2s; }
-  .navigation__icon::before {
-    top: -.8rem; }
-  .navigation__icon::after {
-    top: .8rem; }
-
-.navigation__checkbox:checked + .navigation__button .navigation__icon {
-  background-color: transparent; }
-
-.navigation__checkbox:checked + .navigation__button .navigation__icon::before {
-  top: 0;
-  transform: rotate(135deg); }
-
-.navigation__checkbox:checked + .navigation__button .navigation__icon::after {
-  top: 0;
-  transform: rotate(-135deg); }
-
-.navigation__checkbox:checked ~ .navigation__nav {
-  opacity: 1;
-  width: 100%; }
+.navigation__profile {
+  color: #777;
+  display: inline-block;
+  font-size: 1.4rem;
+  font-weight: 400;
+  text-decoration: none;
+  margin: 3rem; }
+  @media only screen and (max-width: 62.5em), only screen and (hover: none) {
+    .navigation__profile {
+      display: none; } }
 
 .section-about {
   background-color: #f7f7f7;
@@ -457,3 +658,16 @@ body {
 .section-stories {
   position: relative;
   padding: 15rem 0; }
+
+.auth {
+  height: 100vh;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(../img/stylofy-2.jpg);
+  background-size: cover;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.user {
+  height: 100vh;
+  margin-top: 10rem; }

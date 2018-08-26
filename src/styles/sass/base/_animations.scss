@@ -31,3 +31,42 @@
         transform: rotate(-90deg) translateX(0);
     }
 }
+
+@keyframes slide{
+    0%{
+      transform-origin: left;
+      transform: scalex(0.3);
+    }
+    //12.5%{
+      //transform-origin: left;
+      //transform: scalex(0.2);
+    //}
+    25%{
+      transform-origin: left;
+      transform: scalex(1);
+    }
+    26%{
+      transform-origin: right;
+      transform: scalex(1);
+    }
+    50%{
+      transform-origin: right;
+      transform: scalex(0.3);
+    }
+    //62.5%{
+      //transform-origin: right;
+      //transform: scalex(0.2);
+    //}
+    75%{
+      transform-origin: right;
+      transform: scalex(1);
+    }
+    76%{
+      transform-origin: left;
+      transform: scalex(1);
+    }
+    100%{
+      transform-origin: left;
+      transform: scalex(0.3);
+    }
+}

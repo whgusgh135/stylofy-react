@@ -53,7 +53,7 @@ class Booking extends React.Component {
                 <div className="booking">
                     
                     <div className="booking__heading">
-                        <img className="booking__heading--image" src={require(`../../styles/img/hairdresser-${hairdresser.selected.index}.jpg`)} />
+                        <img className="booking__heading--image" alt="hairdresser" src={require(`../../styles/img/hairdresser-${hairdresser.selected.index}.jpg`)} />
                         <h2 className="heading-secondary u-margin-bottom-small">{hairdresser.selected.name}</h2>
                         <div className="booking__heading--date">
                             <button className="btn btn--small" onClick={this.prevDay}>&larr;</button>
@@ -77,7 +77,15 @@ class Booking extends React.Component {
             )
         } else {
             return (
-                <h1>Loading...</h1>
+                <div className="booking__loading">
+                    <h1 className="u-margin-top-big u-center-text">Loading...</h1>
+                    <div class="loading__container">
+                        <span class=""></span>
+                        <div class="loading__line">
+                            <div class="loading__inner"></div>
+                        </div>
+                    </div>
+                </div> 
             )
         }
     }

@@ -24,7 +24,7 @@ class UserBooking extends React.Component {
 
             return(
                 <div className="user-booking">
-                    <img className="booking__heading--image" src={require(`../../styles/img/hairdresser-${hairdresser[0].index}.jpg`)} />
+                    <img className="booking__heading--image" alt="hairdresser" src={require(`../../styles/img/hairdresser-${hairdresser[0].index}.jpg`)} />
                     <div className="user-booking__info">
                         <h4 className="user-booking__hairdresser">{hairdresser[0].name}</h4>
                         <p className="user-booking__time">{new Date(booking.date).toLocaleDateString("en-US", { weekday: 'short', month: 'long', day: 'numeric' })}</p>

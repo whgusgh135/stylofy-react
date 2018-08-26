@@ -1,0 +1,25 @@
+.loading {
+
+    &__container {
+        //background: #eaeaea;
+        width: 20rem;
+        height: 20rem;
+        background-size: cover;
+        vertical-align: middle;
+        margin: 1rem auto;
+    }
+      
+    &__line {
+        height: 3px;
+        width: 100%;
+        background: $color-grey-medium;
+        margin-top: 30%;
+    }
+
+    &__inner{
+        width: 100%;
+        height: inherit;
+        background: $color-primary;
+        animation: slide 2s ease-in-out infinite;
+    }
+}

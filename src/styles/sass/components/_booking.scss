@@ -97,5 +97,12 @@
         }
     }
     
+    &__loading {
+        padding: 20rem 5rem;
+
+        @include respond(tab-port) {
+            padding: 10rem 0;
+        }
+    }
 }
 
